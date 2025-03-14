@@ -1,13 +1,7 @@
 <script setup>
-  import { watchEffect } from 'vue'
-
-  const props = defineProps({
+  defineProps({
     items: Array,
     columns: Array,
-  })
-
-  watchEffect(() => {
-    // console.log(props.items)
   })
 </script>
 

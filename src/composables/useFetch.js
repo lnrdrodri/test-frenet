@@ -8,12 +8,10 @@ export async function useFetch(url, options = {}) {
   try {
     const response = await fetch(url, options);
     data.value = await response.json();
-    console.log("data2", data.value);
   } catch (err) {
     error.value = err.message;
   } finally {
     loading.value = false;
-    console.log("finally");
   }
   
   return { data, error, loading };

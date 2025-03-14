@@ -2,9 +2,8 @@
   import { useForm } from '@/composables/useForm';
   import Input from '@/components/Input.vue';
   import Button from '@/components/Button.vue';
-  import Table from '@/components/Table.vue';
 
-  const { form, valid, onSubmit, rules, apiData } = useForm();
+  const { form, valid, onSubmit, rules } = useForm();
 </script>
 
 <template>
@@ -86,16 +85,4 @@
       Buscar
     </Button>
   </v-form>
-  <div v-if="apiData != null">
-    <Table
-      :columns="[
-        {label: 'Transportadora', key: 'Carrier'},
-        {label: 'Serviço', key: 'ServiceDescription'},
-        {label: 'Prazo', key: 'DeliveryTime'},
-        {label: 'Preço', key: 'OriginalShippingPrice'},
-        {label: 'Preço Frenet', key: 'ShippingPrice'},
-      ]"
-      :items="apiData"
-    />
-  </div>
 </template>
