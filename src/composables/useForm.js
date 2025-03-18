@@ -2,6 +2,7 @@ import { ref, reactive } from 'vue'
 
 import rules from '@/utils/rules'
 import { useFetch } from '@/composables/useFetch'
+import { useHistory } from '@/composables/useHistory'
 
 const apiData = ref(null)
 
@@ -16,6 +17,7 @@ const form = reactive({
 })
 
 export function useForm() {
+  const { updateHistory } = useHistory()
   const valid = ref(false)
 
   async function onSubmit() {
@@ -38,6 +40,9 @@ export function useForm() {
     }
 
     apiData.value = data.value.ShippingSevicesArray
+
+    console.log("apiData", apiData.value)
+    updateHistory(form)
   }
 
   return {

@@ -1,13 +1,20 @@
 <script setup>
   defineProps({
-    label: String,
-    type: String,
+    type: {
+      type: String,
+      default: 'button',
+    },
     disabled: Boolean,
+    classes: String,
+    variant: {
+      type: String,
+      default: '',
+    }
   });
 </script>
 
 <template>
-  <v-btn class="bg-primary" flat :type="type" :disabled="disabled">
+  <v-btn :class="classes" :variant="variant" flat :type="type" :disabled="disabled">
     <slot></slot>
   </v-btn>
 </template>

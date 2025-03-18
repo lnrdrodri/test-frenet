@@ -1,0 +1,7 @@
+#app {
+  /* background: linear-gradient(#000000f1, #000000f1), 
+                    url('/public/bg-frenet.png');
+  background-repeat: repeat;
+  background-size: 120px; */
+  min-height: 100vh;
+}

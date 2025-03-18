@@ -13,8 +13,12 @@ export function useHistory() {
     return savedHistory ? JSON.parse(savedHistory) : []
   }
 
+  function isAlreadyInHistory(form) {
+    return history.value.some(item => JSON.stringify(item) === JSON.stringify(form))
+  }
+
   function updateHistory(form) {
-    console.log("update", form);
+    if(isAlreadyInHistory(form)) return
     
     const historyArray = history.value
 
