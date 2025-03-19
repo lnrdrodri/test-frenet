@@ -1,15 +1,18 @@
 <script setup>
-  import { useForm } from '@/composables/useForm';
-  import { useHistory } from '@/composables/useHistory';
+  import { useForm } from '@/composables/useForm'
+  import { useHistory } from '@/composables/useHistory'
 
-  import Input from '@/components/Input.vue';
-  import Button from '@/components/Button.vue';
-  import { useDialogHistoryStore } from '../stores/dialogHistory';
+  import Input from '@/components/Input.vue'
+  import Button from '@/components/Button.vue'
 
-  const { form, valid, onSubmit, rules } = useForm();
-  const { history } = useHistory();
+  import { useDialogHistoryStore } from '../stores/dialogHistory'
+  import { useLoadingStore } from '../stores/loading'
 
-  const historyDialog = useDialogHistoryStore();
+  const { form, valid, onSubmit, rules } = useForm()
+  const { history } = useHistory()
+
+  const historyDialog = useDialogHistoryStore()
+  const loading = useLoadingStore()
 </script>
 
 <template>
@@ -18,19 +21,21 @@
       <v-col cols="12" md="6">
         <Input
           v-model="form.cep_origin"
-          label="CEP de origem"
+          label="Origem"
           id="cep_origin"
           :rules="[rules.isRequired, rules.isCEP]"
           mask="#####-###"
+          placeholder="Digite o CEP de origem"
         />
       </v-col>
       <v-col cols="12" md="6">
         <Input
           v-model="form.cep_destination"
-          label="CEP de destino"
+          label="Destino"
           id="cep_destination"
           :rules="[rules.isRequired, rules.isCEP]"
           mask="#####-###"
+          placeholder="Digite o CEP de destino"
         />
       </v-col>
     </v-row>
@@ -97,21 +102,14 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="d-flex justify-end ga-4">
-        <Button v-if="history.length > 0" variant="outlined" @click="historyDialog.open">
+      <v-col class="d-flex justify-center ga-4">
+        <Button v-if="history.length > 0" classes="bg-secondary" @click="historyDialog.open">
           Ver histórico
         </Button>
-        <Button type="submit" variant="outlined" classes="bg-primary">
-          Buscar
+        <Button type="submit" classes="bg-primary" :loading="loading.isLoading">
+          Calcular frete
         </Button>
       </v-col>
     </v-row>
-    <!-- 
-      TODO: TER UM LOADING AO CLICAR, PRA N FICAR FAZENDO VARIAS VEZES A MESMA REQUEST,
-      SERIA LEGAL IMPLEMENTAR UM DEBOUNCE NESSE FORM TB, PRA NAO DISPARAR VARIAS VEZES EM SEQUENCIA,
-      MESMO QUE JA TENHA FEITO A REQUEST ANTERIOR, AI FICARIA COM DUAS VALIDACOES, SO FAZ UMA NOVA
-      REQUEST SE JA TERMINOU A ANTERIOR (LOADING) E SE TAMBEM N FEZ ESSA REQUEST A 5s(pensar melhor
-      no tempo) ATRAS
-    -->
   </v-form>
 </template>

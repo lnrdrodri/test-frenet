@@ -32,6 +32,7 @@
             v-for="action in actions"
             :key="action.icon"
             @click="action.handler(item)"
+            :title="action.title"
           >
             {{ action.icon }}
           </v-icon>

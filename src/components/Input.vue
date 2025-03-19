@@ -5,6 +5,7 @@
     name: String,
     label: String,
     rules: Array,
+    placeholder: String,
     mask: {
       type: [Array, String],
       default: '',
@@ -26,6 +27,7 @@
       variant="outlined"
       :rules="rules"
       :type="type"
+      :placeholder="placeholder"
     />
     <v-text-field
       v-else
@@ -34,6 +36,7 @@
       variant="outlined"
       :rules="rules"
       :type="type"
+      :placeholder="placeholder"
       v-mask="mask"
     />
   </div>

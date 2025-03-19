@@ -6,15 +6,23 @@
     },
     disabled: Boolean,
     classes: String,
-    variant: {
+    loading: Boolean,
+    size: {
       type: String,
-      default: '',
-    }
+      default: 'default',
+    },
   });
 </script>
 
 <template>
-  <v-btn :class="classes" :variant="variant" flat :type="type" :disabled="disabled">
+  <v-btn
+    :class="classes"
+    :type="type"
+    :disabled="disabled"
+    :loading="loading"
+    :size="size"
+    flat
+  >
     <slot></slot>
   </v-btn>
 </template>

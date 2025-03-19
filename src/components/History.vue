@@ -6,12 +6,13 @@
   import Table from './Table.vue'
 
   const { history } = useHistory()
-  const { form } = useForm()
+  const { form, apiData } = useForm()
   
   const dialogHistory = useDialogHistoryStore()
 
   function copyHistoryToForm(history) {
     Object.assign(form, { ...history })
+    apiData.value = null
     dialogHistory.close()
   }
 </script>
@@ -26,8 +27,8 @@
   <Table
     v-if="history.length > 0"
     :columns="[
-      {label: 'CEP de origem', key: 'cep_origin'},
-      {label: 'CEP de destino', key: 'cep_destination'},
+      {label: 'Origem', key: 'cep_origin'},
+      {label: 'Destino', key: 'cep_destination'},
       {label: 'Peso (kg)', key: 'weight'},
       {label: 'Largura (cm)', key: 'width'},
       {label: 'Altura (cm)', key: 'height'},
@@ -36,7 +37,11 @@
     ]"
     :items="history"
     :actions="[
-      {icon: 'mdi-content-copy', handler: (item) => copyHistoryToForm(item)},
+      {
+        title: 'Copiar para o formulário',
+        icon: 'mdi-content-copy',
+        handler: (item) => copyHistoryToForm(item)
+      },
     ]"
   />
 </template>

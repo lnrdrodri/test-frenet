@@ -25,7 +25,7 @@ export function useForm() {
       return
     }
     
-    const { data, error, loading } = await useFetch("/api/shipping/quote", {
+    const { data, error } = await useFetch("/api/shipping/quote", {
       method: 'POST',
       body: JSON.stringify(form),
       headers: {
