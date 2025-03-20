@@ -1,15 +1,20 @@
 <script setup>
-  import { useForm } from '@/composables/useForm'
-  import { useHistory } from '@/composables/useHistory'
-
   import Input from '@/components/Input.vue'
   import Button from '@/components/Button.vue'
 
-  import { useDialogHistoryStore } from '../stores/dialogHistory'
-  import { useLoadingStore } from '../stores/loading'
+  import { useDialogHistoryStore } from '@/stores/dialogHistory'
+  import { useLoadingStore } from '@/stores/loading'
+  import { useHistoryStore } from '@/stores/history'
+  import { useQuoteStore } from '@/stores/quote'
+  
+  import { storeToRefs } from 'pinia'
 
-  const { form, valid, onSubmit, rules } = useForm()
-  const { history } = useHistory()
+  const quoteStore = useQuoteStore()
+  const { form, valid } = storeToRefs(quoteStore)
+  const { onSubmit, rules } = quoteStore
+  
+  const historyStore = useHistoryStore()
+  const { history } = storeToRefs(historyStore)
 
   const historyDialog = useDialogHistoryStore()
   const loading = useLoadingStore()
@@ -102,11 +107,21 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="d-flex justify-center flex-column-reverse flex-md-row ga-4">
-        <Button v-if="history.length > 0" classes="bg-secondary" @click="historyDialog.open">
+      <v-col class="d-flex justify-center flex-column-reverse flex-md-row ga-4 pt-8">
+        <Button
+          v-if="history.length > 0"
+          prependIcon="mdi-history"
+          classes="bg-secondary"
+          @click="historyDialog.open"
+        >
           Ver histórico
         </Button>
-        <Button type="submit" classes="bg-primary" :loading="loading.isLoading">
+        <Button
+          prependIcon="mdi-truck-fast"
+          classes="bg-primary"
+          type="submit"
+          :loading="loading.isLoading"
+        >
           Calcular frete
         </Button>
       </v-col>

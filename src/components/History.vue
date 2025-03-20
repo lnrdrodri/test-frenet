@@ -1,18 +1,23 @@
 <script setup>
-  import { useHistory } from '@/composables/useHistory'
-  import { useForm } from '@/composables/useForm'
+  import { useHistoryStore } from '@/stores/history'
   import { useDialogHistoryStore } from '@/stores/dialogHistory'
+  import { useQuoteStore } from '@/stores/quote'
   
   import Table from './Table.vue'
+  import { storeToRefs } from 'pinia'
 
-  const { history } = useHistory()
-  const { form, apiData } = useForm()
+  const historyStore = useHistoryStore()
+  const { history } = storeToRefs(historyStore)
+
+  const quoteStore = useQuoteStore()
+  const { quote } = storeToRefs(quoteStore)
+  const { updateForm } = quoteStore
   
   const dialogHistory = useDialogHistoryStore()
 
-  function copyHistoryToForm(history) {
-    Object.assign(form, { ...history })
-    apiData.value = null
+  function copyHistoryToForm(history) {    
+    updateForm(history)
+    quote.value = null
     dialogHistory.close()
   }
 </script>

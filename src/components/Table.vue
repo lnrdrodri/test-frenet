@@ -22,7 +22,7 @@
     >
       <div class="flex-grow-1 text-body-2">
         <p v-for="column in columns" :key="column.key">
-          {{ column.label }}: {{ item[column.key] }}
+          {{ column.label }}: {{ column?.formatter ? column.formatter(item[column.key]) : item[column.key] }}
         </p>
       </div>
       <div>
@@ -40,7 +40,7 @@
   <v-table
     v-else
     density="compact"
-    class="border-thin rounded"
+    class="border-thin rounded text-body-1"
   >
     <thead>
       <tr>
@@ -56,7 +56,11 @@
         :key="index"
       >
         <td v-for="column in columns">
-          {{ item[column.key] }}
+          {{ 
+            column?.formatter
+            ? column.formatter(item[column.key])
+            : item[column.key]
+          }}
         </td>
         <td v-if="actions.length > 0">
           <v-icon

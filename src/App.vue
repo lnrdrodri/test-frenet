@@ -4,18 +4,26 @@
   import Table from '@/components/Table.vue'
   import DialogHistory from '@/components/DialogHistory.vue'
 
-  import { useForm } from '@/composables/useForm'
   import { useAppTheme } from '@/composables/useAppTheme'
-  import { useLoadingStore } from './stores/loading'
 
-  const { apiData } = useForm()
+  import { useLoadingStore } from '@/stores/loading'
+  import { useQuoteStore } from '@/stores/quote'
+
+  import formatters from '@/utils/formatters'
+  import { storeToRefs } from 'pinia'
+
+  const quoteStore = useQuoteStore()
+  const { quote } = storeToRefs(quoteStore)
 
   const { isDark } = useAppTheme()
   const loading = useLoadingStore()
 </script>
 
 <template>
-  <div class="pb-8">
+  <div
+    class="bg-pattern pb-8"
+    :style="`background-image: url(/bg-logo-${isDark ? 'dark' : 'light'}.svg)`"
+    >
     <div class="d-flex justify-end pa-4">
       <ThemeSwitch />
     </div>
@@ -27,15 +35,15 @@
       />
       <Form />
       <Table
-        v-if="apiData != null && loading.isLoading === false"
+        v-if="quote != null && loading.isLoading === false"
         :columns="[
           {label: 'Transportadora', key: 'Carrier'},
           {label: 'Serviço', key: 'ServiceDescription'},
           {label: 'Prazo', key: 'DeliveryTime'},
-          {label: 'Preço', key: 'OriginalShippingPrice'},
-          {label: 'Preço Frenet', key: 'ShippingPrice'},
+          {label: 'Preço', key: 'OriginalShippingPrice', formatter: formatters.currencyInReal},
+          {label: 'Preço Frenet', key: 'ShippingPrice', formatter: formatters.currencyInReal},
         ]"
-        :items="apiData"
+        :items="quote"
       />
       <DialogHistory />
     </div>

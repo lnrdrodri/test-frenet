@@ -1,8 +1,8 @@
-import { onMounted, ref, watch } from 'vue'
+import { defineStore } from "pinia"
+import { ref, watch } from "vue"
 
-const history = ref([])
-
-export function useHistory() {
+export const useHistoryStore = defineStore("history", () => {
+  const history = ref(getSavedHistory())
 
   function clearHistory() {
     history.value = []
@@ -42,13 +42,9 @@ export function useHistory() {
     localStorage.setItem('@calc_frenet:history', JSON.stringify(newHistory))
   }, { deep: true })
 
-  onMounted(() => {
-    history.value = getSavedHistory();
-  })
-
   return {
     history,
     clearHistory,
     updateHistory
   }
-}
+})

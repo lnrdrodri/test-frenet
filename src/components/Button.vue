@@ -4,13 +4,14 @@
       type: String,
       default: 'button',
     },
-    disabled: Boolean,
-    classes: String,
-    loading: Boolean,
     size: {
       type: String,
       default: 'default',
     },
+    disabled: Boolean,
+    classes: String,
+    loading: Boolean,
+    prependIcon: String,
   });
 </script>
 
@@ -21,6 +22,7 @@
     :disabled="disabled"
     :loading="loading"
     :size="size"
+    :prepend-icon="prependIcon"
     flat
   >
     <slot></slot>

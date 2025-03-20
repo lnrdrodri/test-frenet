@@ -40,8 +40,8 @@ const vuetify = createVuetify({
         colors: {
           primary: "#FF5722",
           secondary: "#C1CED7",
-          surface: "#0A3241",
           background: '#022B3A',
+          surface: "#0A3241",
           text: "#EBF2FA",
         }
       },
