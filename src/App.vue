@@ -15,7 +15,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="pb-8">
     <div class="d-flex justify-end pa-4">
       <ThemeSwitch />
     </div>

@@ -18,7 +18,7 @@
 <template>
   <v-form v-model="valid" validate-on="blur" @submit.prevent="onSubmit">
     <v-row>
-      <v-col cols="12" md="6">
+      <v-col cols="6" md="6">
         <Input
           v-model="form.cep_origin"
           label="Origem"
@@ -28,7 +28,7 @@
           placeholder="Digite o CEP de origem"
         />
       </v-col>
-      <v-col cols="12" md="6">
+      <v-col cols="6" md="6">
         <Input
           v-model="form.cep_destination"
           label="Destino"
@@ -40,7 +40,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="6" md="">
+      <v-col cols="12" md="">
         <Input
           v-model="form.weight"
           label="Peso do produto (kg)"
@@ -52,7 +52,7 @@
           :mask="['####', '#,###', '##,###', '###,###', '####,###', '#.###,###']"
         />
       </v-col>
-      <v-col cols="6" md="">
+      <v-col cols="12" md="">
         <Input
           v-model="form.width"
           label="Largura (cm)"
@@ -64,7 +64,7 @@
           mask="###"
         />
       </v-col>
-      <v-col cols="6" md="">
+      <v-col cols="12" md="">
         <Input
           v-model="form.height"
           label="Altura (cm)"
@@ -76,7 +76,7 @@
           mask="###"
         />
       </v-col>
-      <v-col cols="6" md="">
+      <v-col cols="12" md="">
         <Input
         v-model="form.length"
         label="Comprimento (cm)"
@@ -102,7 +102,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="d-flex justify-center ga-4">
+      <v-col class="d-flex justify-center flex-column-reverse flex-md-row ga-4">
         <Button v-if="history.length > 0" classes="bg-secondary" @click="historyDialog.open">
           Ver histórico
         </Button>

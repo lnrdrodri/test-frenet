@@ -1,4 +1,6 @@
 <script setup>
+  import { useDisplay } from 'vuetify'
+
   const model = defineModel();
   
   const props = defineProps({
@@ -15,11 +17,15 @@
       default: 'text',
     },
   });
+
+  const { mobile } = useDisplay()
 </script>
 
 <template>
   <div>
-    <label :for="name">{{label}}</label>
+    <label class="text-body-2 text-md-body-1 text-no-wrap" :for="name">
+      {{ label }}
+    </label>
     <v-text-field
       v-if="mask == ''"
       v-model="model"
@@ -28,6 +34,8 @@
       :rules="rules"
       :type="type"
       :placeholder="placeholder"
+      hide-details="auto"
+      :density="mobile ? 'compact' : 'comfortable'"
     />
     <v-text-field
       v-else
@@ -37,6 +45,8 @@
       :rules="rules"
       :type="type"
       :placeholder="placeholder"
+      hide-details="auto"
+      :density="mobile ? 'compact' : 'comfortable'"
       v-mask="mask"
     />
   </div>
