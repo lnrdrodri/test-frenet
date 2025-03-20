@@ -3,6 +3,7 @@ import Form from '@/components/Form.vue'
 import ThemeSwitch from '@/components/ThemeSwitch.vue'
 import Table from '@/components/Table.vue'
 import DialogHistory from '@/components/DialogHistory.vue'
+import Footer from '@/components/Footer.vue'
 
 import { useAppTheme } from '@/composables/useAppTheme'
 
@@ -67,4 +68,5 @@ const loading = useLoadingStore()
       <DialogHistory />
     </div>
   </div>
+  <Footer />
 </template>

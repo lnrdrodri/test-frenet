@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&display=swap');
 
+:root {
+  --footer-height: 45px;
+}
+
 html,
 body {
   min-height: 100vh;
@@ -37,5 +41,12 @@ body {
   background-repeat: repeat;
   background-size: 100px;
   background-position: center;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--footer-height));
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+  color: rgb(var(--v-theme-text));
 }
