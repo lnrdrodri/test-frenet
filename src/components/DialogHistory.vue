@@ -1,18 +1,18 @@
 <script setup>
-  import History from '@/components/History.vue'
-  import Button from '@/components/Button.vue'
-  
-  import { useDialogHistoryStore } from '@/stores/dialogHistory'
-  import { useHistoryStore } from '@/stores/history'
+import History from '@/components/History.vue'
+import Button from '@/components/Button.vue'
 
-  const { clearHistory } = useHistoryStore()
+import { useDialogHistoryStore } from '@/stores/dialogHistory'
+import { useHistoryStore } from '@/stores/history'
 
-  const historyDialog = useDialogHistoryStore()
+const { clearHistory } = useHistoryStore()
 
-  function clearAndClose() {
-    clearHistory()
-    historyDialog.close()
-  }
+const historyDialog = useDialogHistoryStore()
+
+function clearAndClose() {
+  clearHistory()
+  historyDialog.close()
+}
 </script>
 
 <template>
@@ -20,7 +20,7 @@
     <v-card class="pa-8">
       <v-icon
         @click="historyDialog.close"
-        style="position: absolute; top: 24px; right: 24px;"
+        style="position: absolute; top: 24px; right: 24px"
       >
         mdi-window-close
       </v-icon>

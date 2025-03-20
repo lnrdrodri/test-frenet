@@ -1,23 +1,23 @@
 <script setup>
-  import Input from '@/components/Input.vue'
-  import Button from '@/components/Button.vue'
+import Input from '@/components/Input.vue'
+import Button from '@/components/Button.vue'
 
-  import { useDialogHistoryStore } from '@/stores/dialogHistory'
-  import { useLoadingStore } from '@/stores/loading'
-  import { useHistoryStore } from '@/stores/history'
-  import { useQuoteStore } from '@/stores/quote'
-  
-  import { storeToRefs } from 'pinia'
+import { useDialogHistoryStore } from '@/stores/dialogHistory'
+import { useLoadingStore } from '@/stores/loading'
+import { useHistoryStore } from '@/stores/history'
+import { useQuoteStore } from '@/stores/quote'
 
-  const quoteStore = useQuoteStore()
-  const { form, valid } = storeToRefs(quoteStore)
-  const { onSubmit, rules } = quoteStore
-  
-  const historyStore = useHistoryStore()
-  const { history } = storeToRefs(historyStore)
+import { storeToRefs } from 'pinia'
 
-  const historyDialog = useDialogHistoryStore()
-  const loading = useLoadingStore()
+const quoteStore = useQuoteStore()
+const { form, valid } = storeToRefs(quoteStore)
+const { onSubmit, rules } = quoteStore
+
+const historyStore = useHistoryStore()
+const { history } = storeToRefs(historyStore)
+
+const historyDialog = useDialogHistoryStore()
+const loading = useLoadingStore()
 </script>
 
 <template>
@@ -52,9 +52,16 @@
           id="weight"
           :rules="[
             rules.isRequired,
-            value => rules.isBetweenFloatValues(value, 0, 9999.999)
+            (value) => rules.isBetweenFloatValues(value, 0, 9999.999),
           ]"
-          :mask="['####', '#,###', '##,###', '###,###', '####,###', '#.###,###']"
+          :mask="[
+            '####',
+            '#,###',
+            '##,###',
+            '###,###',
+            '####,###',
+            '#.###,###',
+          ]"
         />
       </v-col>
       <v-col cols="12" md="">
@@ -64,7 +71,7 @@
           id="width"
           :rules="[
             rules.isRequired,
-            value => rules.isBetweenValues(value, 0, 1000)
+            (value) => rules.isBetweenValues(value, 0, 1000),
           ]"
           mask="###"
         />
@@ -76,19 +83,19 @@
           id="height"
           :rules="[
             rules.isRequired,
-            value => rules.isBetweenValues(value, 0, 1000)
+            (value) => rules.isBetweenValues(value, 0, 1000),
           ]"
           mask="###"
         />
       </v-col>
       <v-col cols="12" md="">
         <Input
-        v-model="form.length"
-        label="Comprimento (cm)"
-        id="length"
+          v-model="form.length"
+          label="Comprimento (cm)"
+          id="length"
           :rules="[
             rules.isRequired,
-            value => rules.isBetweenValues(value, 0, 1000)
+            (value) => rules.isBetweenValues(value, 0, 1000),
           ]"
           mask="###"
         />
@@ -98,16 +105,24 @@
           v-model="form.declared_value"
           label="Valor declarado (R$)"
           id="declared_value"
-          :mask="['R$ ###', 'R$ #,##', 'R$ ##,##', 'R$ ###,##', 'R$ ####,##', 'R$ #.###,##', 'R$ ##.###,##', 'R$ ###.###,##']"
-          :rules="[
-            rules.isRequired,
-            rules.isPositiveCurrency
+          :mask="[
+            'R$ ###',
+            'R$ #,##',
+            'R$ ##,##',
+            'R$ ###,##',
+            'R$ ####,##',
+            'R$ #.###,##',
+            'R$ ##.###,##',
+            'R$ ###.###,##',
           ]"
+          :rules="[rules.isRequired, rules.isPositiveCurrency]"
         />
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="d-flex justify-center flex-column-reverse flex-md-row ga-4 pt-8">
+      <v-col
+        class="d-flex justify-center flex-column-reverse flex-md-row ga-4 pt-8"
+      >
         <Button
           v-if="history.length > 0"
           prependIcon="mdi-history"

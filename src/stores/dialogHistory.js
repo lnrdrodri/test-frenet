@@ -1,16 +1,16 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export const useDialogHistoryStore = defineStore("dialogHistory", () => {
-  const isOpen = ref(false);
+export const useDialogHistoryStore = defineStore('dialogHistory', () => {
+  const isOpen = ref(false)
 
   function open() {
-    isOpen.value = true;
+    isOpen.value = true
   }
 
   function close() {
-    isOpen.value = false;
+    isOpen.value = false
   }
 
-  return { isOpen, open, close };
-});
+  return { isOpen, open, close }
+})

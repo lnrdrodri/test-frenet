@@ -1,18 +1,18 @@
 <script setup>
-  defineProps({
-    type: {
-      type: String,
-      default: 'button',
-    },
-    size: {
-      type: String,
-      default: 'default',
-    },
-    disabled: Boolean,
-    classes: String,
-    loading: Boolean,
-    prependIcon: String,
-  });
+defineProps({
+  type: {
+    type: String,
+    default: 'button',
+  },
+  size: {
+    type: String,
+    default: 'default',
+  },
+  disabled: Boolean,
+  classes: String,
+  loading: Boolean,
+  prependIcon: String,
+})
 </script>
 
 <template>

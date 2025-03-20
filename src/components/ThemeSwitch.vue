@@ -1,7 +1,7 @@
 <script setup>
-import { useAppTheme } from '../composables/useAppTheme';
+import { useAppTheme } from '../composables/useAppTheme'
 
-  const { isDark, toggleTheme } = useAppTheme();
+const { isDark, toggleTheme } = useAppTheme()
 </script>
 
 <template>
@@ -10,6 +10,6 @@ import { useAppTheme } from '../composables/useAppTheme';
     @click="toggleTheme"
     class="cursor-pointer"
   >
-    {{isDark ? "☀️" : "🌑"}}
+    {{ isDark ? '☀️' : '🌑' }}
   </span>
 </template>

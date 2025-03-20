@@ -1,6 +1,7 @@
 # Teste Técnico - Desenvolvedor Frontend (ASP.NET MVC, Vue.js, React Native)
 
 ## Descrição do Teste
+
 Bem-vindo ao teste técnico para a posição de Desenvolvedor Frontend! O objetivo deste desafio é avaliar suas habilidades na criação de interfaces Web e Mobile integradas à API REST da Frenet.
 
 Para realizar esse teste você tem a opção de desenvolver **uma aplicação web** utilizando Vue.
@@ -8,16 +9,17 @@ Para realizar esse teste você tem a opção de desenvolver **uma aplicação we
 As aplicação devem permitir a cotação de frete utilizando a API da Frenet disponível em: [Frenet API Docs](https://frenetapi.docs.apiary.io/#reference/shipping/shippingquote/post).
 
 ## Requisitos
+
 ### 1. Funcionalidades Obrigatórias
 
 - Criar um formulário contendo os seguintes campos:
-	- CEP de origem (`cep_origin`)
-	- CEP de destino (`cep_destination`)
-	- Peso do produto (kg) (`weight`)
-	- Largura (cm) (`width`)
-	- Altura (cm) (`height`)
-	- Comprimento (cm) (`length`)
-	- Valor declarado (`declared_value`)
+  - CEP de origem (`cep_origin`)
+  - CEP de destino (`cep_destination`)
+  - Peso do produto (kg) (`weight`)
+  - Largura (cm) (`width`)
+  - Altura (cm) (`height`)
+  - Comprimento (cm) (`length`)
+  - Valor declarado (`declared_value`)
 - Enviar os dados para a API e exibir os resultados da cotação em tela.
 
 ### 2. Diferenciais

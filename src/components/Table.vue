@@ -1,16 +1,16 @@
 <script setup>
-  import { useDisplay } from 'vuetify'
+import { useDisplay } from 'vuetify'
 
-  defineProps({
-    items: Array,
-    columns: Array,
-    actions: {
-      type: Array,
-      default: [],
-    }
-  })
+defineProps({
+  items: Array,
+  columns: Array,
+  actions: {
+    type: Array,
+    default: [],
+  },
+})
 
-  const { mdAndDown } = useDisplay()
+const { mdAndDown } = useDisplay()
 </script>
 
 <template>
@@ -22,7 +22,12 @@
     >
       <div class="flex-grow-1 text-body-2">
         <p v-for="column in columns" :key="column.key">
-          {{ column.label }}: {{ column?.formatter ? column.formatter(item[column.key]) : item[column.key] }}
+          {{ column.label }}:
+          {{
+            column?.formatter
+              ? column.formatter(item[column.key])
+              : item[column.key]
+          }}
         </p>
       </div>
       <div>
@@ -31,17 +36,14 @@
           :key="action.icon"
           @click="action.handler(item)"
           :title="action.title"
+          color="primary"
         >
           {{ action.icon }}
         </v-icon>
       </div>
     </div>
   </div>
-  <v-table
-    v-else
-    density="compact"
-    class="border-thin rounded text-body-1"
-  >
+  <v-table v-else density="compact" class="border-thin rounded text-body-1">
     <thead>
       <tr>
         <th v-for="column in columns" :key="column">
@@ -51,15 +53,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        v-for="(item, index) in items"
-        :key="index"
-      >
+      <tr v-for="(item, index) in items" :key="index">
         <td v-for="column in columns">
-          {{ 
+          {{
             column?.formatter
-            ? column.formatter(item[column.key])
-            : item[column.key]
+              ? column.formatter(item[column.key])
+              : item[column.key]
           }}
         </td>
         <td v-if="actions.length > 0">
@@ -68,6 +67,7 @@
             :key="action.icon"
             @click="action.handler(item)"
             :title="action.title"
+            color="primary"
           >
             {{ action.icon }}
           </v-icon>

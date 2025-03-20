@@ -7,22 +7,27 @@ export function useAppTheme() {
   const isDark = computed(() => {
     return theme.global.current.value.dark
   })
-  
-  function toggleTheme () {
+
+  function toggleTheme() {
     theme.global.name.value = isDark.value ? 'light' : 'dark'
   }
 
   onMounted(() => {
-    const savedTheme = localStorage.getItem('@calc_frenet:theme', theme.global.name.value) || 'light'
+    const savedTheme =
+      localStorage.getItem('@calc_frenet:theme', theme.global.name.value) ||
+      'light'
     theme.global.name.value = savedTheme
   })
 
-  watch(() => theme.global.name.value, (newTheme) => {
-    localStorage.setItem('@calc_frenet:theme', newTheme)
-  })
+  watch(
+    () => theme.global.name.value,
+    (newTheme) => {
+      localStorage.setItem('@calc_frenet:theme', newTheme)
+    }
+  )
 
   return {
     isDark,
-    toggleTheme
+    toggleTheme,
   }
 }

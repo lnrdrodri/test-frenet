@@ -1,24 +1,24 @@
 <script setup>
-  import { useDisplay } from 'vuetify'
+import { useDisplay } from 'vuetify'
 
-  const model = defineModel();
-  
-  const props = defineProps({
-    name: String,
-    label: String,
-    rules: Array,
-    placeholder: String,
-    mask: {
-      type: [Array, String],
-      default: '',
-    },
-    type: {
-      type: String,
-      default: 'text',
-    },
-  });
+const model = defineModel()
 
-  const { mobile } = useDisplay()
+const props = defineProps({
+  name: String,
+  label: String,
+  rules: Array,
+  placeholder: String,
+  mask: {
+    type: [Array, String],
+    default: '',
+  },
+  type: {
+    type: String,
+    default: 'text',
+  },
+})
+
+const { mobile } = useDisplay()
 </script>
 
 <template>

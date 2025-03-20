@@ -1,25 +1,25 @@
 <script setup>
-  import { useHistoryStore } from '@/stores/history'
-  import { useDialogHistoryStore } from '@/stores/dialogHistory'
-  import { useQuoteStore } from '@/stores/quote'
-  
-  import Table from './Table.vue'
-  import { storeToRefs } from 'pinia'
+import { useHistoryStore } from '@/stores/history'
+import { useDialogHistoryStore } from '@/stores/dialogHistory'
+import { useQuoteStore } from '@/stores/quote'
 
-  const historyStore = useHistoryStore()
-  const { history } = storeToRefs(historyStore)
+import Table from './Table.vue'
+import { storeToRefs } from 'pinia'
 
-  const quoteStore = useQuoteStore()
-  const { quote } = storeToRefs(quoteStore)
-  const { updateForm } = quoteStore
-  
-  const dialogHistory = useDialogHistoryStore()
+const historyStore = useHistoryStore()
+const { history } = storeToRefs(historyStore)
 
-  function copyHistoryToForm(history) {    
-    updateForm(history)
-    quote.value = null
-    dialogHistory.close()
-  }
+const quoteStore = useQuoteStore()
+const { quote } = storeToRefs(quoteStore)
+const { updateForm } = quoteStore
+
+const dialogHistory = useDialogHistoryStore()
+
+function copyHistoryToForm(history) {
+  updateForm(history)
+  quote.value = null
+  dialogHistory.close()
+}
 </script>
 
 <template>
@@ -32,20 +32,20 @@
   <Table
     v-if="history.length > 0"
     :columns="[
-      {label: 'Origem', key: 'cep_origin'},
-      {label: 'Destino', key: 'cep_destination'},
-      {label: 'Peso (kg)', key: 'weight'},
-      {label: 'Largura (cm)', key: 'width'},
-      {label: 'Altura (cm)', key: 'height'},
-      {label: 'Comprimento (cm)', key: 'length'},
-      {label: 'Valor declarado (R$)', key: 'declared_value'},
+      { label: 'Origem', key: 'cep_origin' },
+      { label: 'Destino', key: 'cep_destination' },
+      { label: 'Peso (kg)', key: 'weight' },
+      { label: 'Largura (cm)', key: 'width' },
+      { label: 'Altura (cm)', key: 'height' },
+      { label: 'Comprimento (cm)', key: 'length' },
+      { label: 'Valor declarado (R$)', key: 'declared_value' },
     ]"
     :items="history"
     :actions="[
       {
         title: 'Copiar para o formulário',
-        icon: 'mdi-content-copy',
-        handler: (item) => copyHistoryToForm(item)
+        icon: 'mdi-truck-delivery',
+        handler: (item) => copyHistoryToForm(item),
       },
     ]"
   />

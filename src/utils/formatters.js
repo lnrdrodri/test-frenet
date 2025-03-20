@@ -1,6 +1,9 @@
 export default {
-  currencyInReal: value => {
+  currencyInReal: (value) => {
     const currency = parseFloat(value)
-    return currency.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-  }
+    return currency.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    })
+  },
 }
