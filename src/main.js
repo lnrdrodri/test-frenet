@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 
-import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import vuetifyOptions from '../config/vuetify'
+import 'vuetify/styles'
 
 import VueTheMask from 'vue-the-mask'
 
@@ -14,4 +14,8 @@ const vuetify = createVuetify({ ...vuetifyOptions })
 
 const pinia = createPinia()
 
-createApp(App).use(vuetify).use(VueTheMask).use(pinia).mount('#app')
+const app = createApp(App)
+app.use(vuetify)
+app.use(VueTheMask)
+app.use(pinia)
+app.mount('#app')

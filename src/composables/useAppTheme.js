@@ -14,8 +14,7 @@ export function useAppTheme() {
 
   onMounted(() => {
     const savedTheme =
-      localStorage.getItem('@calc_frenet:theme', theme.global.name.value) ||
-      'light'
+      localStorage.getItem('@calc_frenet:theme') || theme.global.name.value
     theme.global.name.value = savedTheme
   })
 

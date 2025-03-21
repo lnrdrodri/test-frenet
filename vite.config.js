@@ -13,11 +13,17 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://private-anon-ec5c40d5dd-frenetapi.apiary-mock.com/', // URL real da API
+        target: 'https://private-anon-ec5c40d5dd-frenetapi.apiary-mock.com/',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
+  },
+  test: {
+    globals: true, // Permite o uso de globals (describe, it, expect, etc.)
+    environment: 'jsdom', // Usa o jsdom para simular o ambiente do navegador
+    setupFiles: './src/tests/setup.js', // Arquivo de setup para configurações globais
+    pool: 'vmThreads',
   },
 })

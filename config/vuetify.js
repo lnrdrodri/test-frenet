@@ -16,7 +16,6 @@ export default {
     defaultTheme: 'dark',
     themes: {
       light: {
-        dark: false,
         colors: {
           primary: '#FF5722',
           secondary: '#C1CED7',
@@ -26,7 +25,6 @@ export default {
         },
       },
       dark: {
-        dark: true,
         colors: {
           primary: '#FF5722',
           secondary: '#C1CED7',
