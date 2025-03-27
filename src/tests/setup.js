@@ -6,6 +6,7 @@ import vuetifyOptions from '../../config/vuetify'
 import 'vuetify/styles'
 
 import { createPinia, setActivePinia } from 'pinia'
+import VueTheMask from 'vue-the-mask'
 
 const vuetify = createVuetify({ ...vuetifyOptions })
 
@@ -13,7 +14,4 @@ beforeEach(() => {
   setActivePinia(createPinia())
 })
 
-config.global.plugins = [vuetify]
-config.global.directives = {
-  mask: vi.fn(),
-}
+config.global.plugins = [vuetify, VueTheMask]
