@@ -1,59 +1,75 @@
-# Teste Técnico - Desenvolvedor Frontend (ASP.NET MVC, Vue.js, React Native)
+# Frenet - Simulador de fretes (Leonardo)
 
-## Descrição do Teste
+Acesse em: https://test-frenet.vercel.app/
 
-Bem-vindo ao teste técnico para a posição de Desenvolvedor Frontend! O objetivo deste desafio é avaliar suas habilidades na criação de interfaces Web e Mobile integradas à API REST da Frenet.
+## Tech Stack
 
-Para realizar esse teste você tem a opção de desenvolver **uma aplicação web** utilizando Vue.
+**Web:** Vue 3, Vite, Vuetify e Pinia
 
-As aplicação devem permitir a cotação de frete utilizando a API da Frenet disponível em: [Frenet API Docs](https://frenetapi.docs.apiary.io/#reference/shipping/shippingquote/post).
+**Testes unitários:** Vitest e Vue test utils
 
-## Requisitos
 
-### 1. Funcionalidades Obrigatórias
+## Decisões técnicas
 
-- Criar um formulário contendo os seguintes campos:
-  - CEP de origem (`cep_origin`)
-  - CEP de destino (`cep_destination`)
-  - Peso do produto (kg) (`weight`)
-  - Largura (cm) (`width`)
-  - Altura (cm) (`height`)
-  - Comprimento (cm) (`length`)
-  - Valor declarado (`declared_value`)
-- Enviar os dados para a API e exibir os resultados da cotação em tela.
+#### Porque Vue Router não foi instalado?
 
-### 2. Diferenciais
+Não vi necessidade, visto que a aplicação não tem navegação.
 
-Fique à vontade para ir além do que foi listado como obrigatório e refinar a solução apresentada, seja na experiência final, seja na questão técnica. Alguns exemplos:
+#### Porque usar o Vuetify?
 
-- Implementação de testes unitários.
-- Melhorias na interface utilizando boas práticas de UX/UI.
-- Persistência do histórico de cotações utilizando local storage (Web) e AsyncStorage (Mobile).
-- Bibliotecas de gerenciamento de estado.
-- Cache para evitar requisições repetidas dentro de um intervalo de tempo.
-- ....
+Já tenho conhecimento prévio do Vuetify e de Tailwind, mas optei pelo Vuetify por já usar a mais tempo e ter mais produtividade com ele.
 
-## Tecnologias Esperadas
+#### Porque criou a função de debounce e não utilizou?
 
-- **Web**: Vue
-- **Versionamento de código**: Git
+Criei a função para exemplificar com eu implementaria, mas não usei ela por não ver necessidade, já que a requisição feita pela aplicação é no click do botão, e já utiliza um sistema de loading e cache, acho que só adicionaria um efeito de delay na requisição e não faria uma diferença de performance.
 
-## Como Submeter o Teste
+Caso as requisições fossem feitas baseadas em um autocomplete ou input, nesse caso eu acredito que seria extremamente útil, e ja implementei em projetos que fiz.
 
-1. Crie um repositório Git público para seu código.
-2. Coloque esse README na raiz.
-3. Desenvolva a aplicação documentando seu progresso através de commits.
-4. Atualize este README com instruções claras de como rodar os projetos.
-5. Envie o link do repositório para avaliação.
+## UI/UX
 
-## Critérios de Avaliação
+- As cores da aplicação foram inspiradas nas cores da marca Frenet, de acordo com o site da empresa.
+- Criei um pattern para usar de background na aplicação com uma parte do logo da Frenet, criando mais identificação com a marca e deixando mais agradável visualmente.
+- Implementei os temas light e dark para que o usuário decida qual prefere usar.
 
-- **Qualidade do código**: organização, boas práticas e padrões.
-- **Estrutura do projeto**: organização e modularização do código.
-- **Uso correto da API**: implementação correta da integração.
-- **Experiência do usuário**: layout intuitivo e responsivo.
-- **Desempenho e otimizações**: caching, debounce em requisições, etc.
+## Performance
 
-Se tiver dúvidas, fique à vontade para perguntar!
+- Criei um sistema de cache usando a store do Pinia e composables do Vue, que bloqueia requisições com url e body iguais dentro de determinado tempo (1 minuto).
+- Implementei um loading na store do Pinia, que bloqueia o click do botão para calcular fretes até que ele tenha um retorno
+- Criei uma função de debounce, mas não utilizei, expliquei nas decisões técnicas porque optei por isso.
 
-Boa sorte! 🚀
+
+## Executando o projeto localmente
+
+Para facilitar a avaliação, foi realizado o deploy da aplicação na vercel e pode ser acessado pelo link: https://test-frenet.vercel.app/
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/lnrdrodri/test-frenet
+```
+
+Vá para a pasta do projeto
+
+```bash
+  cd test-frenet
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run dev
+```
+
+## Executando os testes
+
+Para executar os testes, use o comando a seguir
+
+```bash
+  npm run test
+```

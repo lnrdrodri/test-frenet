@@ -10,12 +10,12 @@ export const useQuoteStore = defineStore('quote', () => {
 
   const form = reactive({
     cep_origin: '16012520',
-    cep_destination: '16012521',
+    cep_destination: '12100870',
     weight: '1',
-    width: '2',
-    height: '3',
-    length: '4',
-    declared_value: '5',
+    width: '25',
+    height: '30',
+    length: '40',
+    declared_value: '75',
   })
 
   const { updateHistory } = useHistoryStore()
