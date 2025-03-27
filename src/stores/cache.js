@@ -38,16 +38,16 @@ export const useCache = defineStore('cache', () => {
     const cacheIsUpToDate = isValidCache(requestCached, expiresInMinutes)
 
     if (!cacheIsUpToDate) {
-      clearOldCache()
+      clearOldCache(expiresInMinutes)
       return false
     }
 
     return requestCached.data
   }
 
-  function clearOldCache() {
+  function clearOldCache(expiresInMinutes) {
     requests.value = requests.value.filter((request) => {
-      return isValidCache(request, 5)
+      return isValidCache(request, expiresInMinutes)
     })
   }
 
